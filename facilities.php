@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <?php require('sections/links.php') ?>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
   <title>InnTrack | Facilities</title>
 
   <style>
@@ -30,7 +29,7 @@
     <h2 class="fw-bold h-font text-center">Our Facilities</h2>
     <p class="text-center">
       Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-      Fugiat dolorum nostrum expedita illum debitis possimus 
+      Fugiat dolorum nostrum expedita illum debitis possimus
       blanditiis odit officia quos voluptas.
     </p>
   </div>
