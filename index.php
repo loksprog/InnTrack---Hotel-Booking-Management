@@ -111,7 +111,7 @@
           <img src="images/rooms/1.jpg" class="card-img-top" alt="...">
 
           <div class="card-body">
-            <h5>Simple Room Name</h5>
+            <h5>Cozy Class</h5>
             <h6 class="mb-4">Php2570 per night</h6>
 
             <div class="features mb-4">
@@ -181,7 +181,7 @@
           <img src="images/rooms/2.png" class="card-img-top" alt="...">
 
           <div class="card-body">
-            <h5>Simple Room Name</h5>
+            <h5>Comfort Suite</h5>
             <h6 class="mb-4">Php4490 per night</h6>
 
             <div class="features mb-4">
@@ -252,7 +252,7 @@
           <img src="images/rooms/3.png" class="card-img-top" alt="...">
 
           <div class="card-body">
-            <h5>Simple Room Name</h5>
+            <h5>Prestige Loft</h5>
             <h6 class="mb-4">Php6990 per night</h6>
 
             <div class="features mb-4">
