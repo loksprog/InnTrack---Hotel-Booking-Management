@@ -1,0 +1,43 @@
+:root {
+  --primary: 	#3b38ad;
+  --primary_hover: #3b37adc9;
+}
+
+* {
+  font-family: Poppins;
+}
+
+.h-font {
+  font-family: manrope;
+}
+
+/* Remove number arrows */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.custom-bg {
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+}
+
+.custom-bg:hover {
+  background-color: var(--primary_hover);
+  border-color: var(--primary_hover);
+}
+
+.custom-alert{
+  position: fixed;
+  top: 25px;
+  right: 25px;
+}
+
+
