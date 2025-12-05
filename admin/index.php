@@ -75,6 +75,6 @@
 ?>
 
 
-<?php require('sections/scripts.php') ?>
+<?php require('sections/scripts.php'); ?>
 </body>
 </html>
