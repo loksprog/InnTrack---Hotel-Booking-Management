@@ -17,6 +17,7 @@
         echo"<script>
             window.location.href='$url';
         </script>";
+        exit;
     }
 
     function alert($type, $msg){
