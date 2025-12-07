@@ -17,14 +17,14 @@
         <div class="col-lg-4 p-4">
             <h5 class="mb-3">Follow us</h5>
             <?php
-                if ($contact_r['fb']!=''){
-                    echo<<<data
+            if ($contact_r['fb'] != '') {
+                echo <<<data
                     <a href="$contact_r[fb]" target="_blank" class="d-inline-block text-dark text-decoration-none mb-2">
                         <i class="bi bi-facebook me-1"></i>
                         Facebook
                     </a> <br>
                     data;
-                }
+            }
             ?>
 
             <a href="<?php echo $contact_r['ig'] ?>" target="_blank" class="d-inline-block text-dark text-decoration-none mb-2">
@@ -42,3 +42,21 @@
 <div class="text-center bg-dark text-white crt fs-md-6 fs-lg-6 p-3 m-0">Developed by Group 1</div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+
+
+<script>
+    function setActive() {
+        let navbar = document.getElementById('nav-bar');
+        let a_tags = navbar.getElementsByTagName('a');
+
+        for (i = 0; i < a_tags.length; i++) {
+            let file = a_tags[i].href.split('/').pop();
+            let file_name = file.split('.')[0];
+
+            if (document.location.href.indexOf(file_name) >= 0) {
+                a_tags[i].classList.add('active');
+            }
+        }
+    }
+    setActive();
+</script>
