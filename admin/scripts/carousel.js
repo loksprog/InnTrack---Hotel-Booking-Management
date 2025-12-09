@@ -1,29 +1,6 @@
 let carousel_s_form = document.getElementById("carousel_s_form")
 let carousel_picture_inp = document.getElementById("carousel_picture_inp");
 
-function alert(type, msg) {
-  let alertContainer = document.getElementById("alert-container");
-  let bgColor = type === "success" ? "#d4edda" : "#f8d7da";
-  let textColor = type === "success" ? "#155724" : "#721c24";
-  let borderColor = type === "success" ? "#c3e6cb" : "#f5c6cb";
-
-  let alertDiv = document.createElement("div");
-  alertDiv.className = "alert alert-dismissible fade show";
-  alertDiv.style.cssText = `background-color: ${bgColor}; color: ${textColor}; border: 1px solid ${borderColor}; border-radius: 0.25rem; min-width: 300px;`;
-  alertDiv.innerHTML = `
-                <strong>${msg}</strong>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            `;
-
-  alertContainer.innerHTML = "";
-  alertContainer.appendChild(alertDiv);
-
-  setTimeout(function () {
-    let bsAlert = new bootstrap.Alert(alertDiv);
-    bsAlert.close();
-  }, 4000);
-}
-
 
 carousel_s_form.addEventListener("submit", function (e) {
   e.preventDefault();
