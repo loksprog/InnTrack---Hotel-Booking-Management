@@ -67,7 +67,7 @@
         }
         else{
             alert('error','Login failed - Invalid Credentials!');
-            redirect('index.php');
+            // redirect('index.php');
         }
     }
 

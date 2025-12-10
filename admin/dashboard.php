@@ -14,8 +14,6 @@
 </head>
 <body class="bg-light">
 
-    <?php showAlert(); ?> 
-
     <?php require('inc/header.php');?>
 
     <div class="container-fluid" id="main-content">
