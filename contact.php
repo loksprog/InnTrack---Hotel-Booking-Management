@@ -25,7 +25,7 @@
     <div class="row">
       <div class="col-lg-6 col-md-6 mb-5 px-4">
         <div class="bg-white rounded p-4" style="border: 2px solid #3b37ad25;">
-          <iframe class="w-100 rounded mb-4" height="320px" src="<?php echo $contact_r['iframe'] ?>>" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <iframe class="w-100 rounded mb-4" height="320px" src="<?php echo $contact_r['iframe'] ?>" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 
           <h5>Address</h5>
           <a href="<?php echo $contact_r['gmap'] ?>" target="_blank" class="d-inline-block text-decoration-none text-dark mb-2">
@@ -58,14 +58,14 @@
 
           <!-- Follow Us -->
           <h5 class="mt-4">Follow us</h5>
-          <?php 
-            if($contact_r['fb']!=''){
-              echo<<<data
+          <?php
+          if ($contact_r['fb'] != '') {
+            echo <<<data
               <a href="$contact_r[fb]" target="_blank" class="d-inline-block text-dark fs-5 me-2">
                 <i class="bi bi-facebook me-1"></i>
               </a>
               data;
-            }
+          }
           ?>
           <a href="<?php echo $contact_r['ig'] ?>" target="_blank" class="d-inline-block text-dark fs-5 me-2">
             <i class="bi bi-instagram me-1"></i>
@@ -78,34 +78,53 @@
 
       <div class="col-lg-6 col-md-6 px-4">
         <div class="bg-white rounded p-4" style="border: 2px solid #3b37ad25;">
-          <form>
+          <form method="POST">
             <h5>Send a message</h5>
             <div class="mt-3">
               <label class="form-label" style="font-weight: 500;">Name</label>
-              <input type="text" class="form-control shadow-none">
+              <input name="name" required type="text" class="form-control shadow-none">
             </div>
 
             <div class="mt-3">
               <label class="form-label" style="font-weight: 500;">Email</label>
-              <input type="email" class="form-control shadow-none">
+              <input name="email" required type="email" class="form-control shadow-none">
             </div>
 
             <div class="mt-3">
               <label class="form-label" style="font-weight: 500;">Subject</label>
-              <input type="text" class="form-control shado-none">
+              <input name="subject" required type="text" class="form-control shadow-none">
             </div>
 
             <div class="mt-3">
               <label class="form-label" style="font-weight: 500;">Message</label>
-              <textarea class="form-control shadow-none" rows="5" style="resize: none;"></textarea>
+              <textarea name="message" required class="form-control shadow-none" rows="5" style="resize: none;"></textarea>
             </div>
 
-            <button type="submit" class="btn text-white custom-bg mt-3">Send</button>
+            <button type="submit" name="send" class="btn text-white custom-bg mt-3">Send</button>
           </form>
         </div>
       </div>
     </div>
   </div>
+
+  <?php
+    if (isset($_POST['send']))
+    {
+      $frm_data = filteration($_POST);
+
+      $q = "INSERT INTO `user_queries`(`name`, `email`, `subject`, `message`) VALUES (?,?,?,?)";
+      $values = [$frm_data['name'],$frm_data['email'],$frm_data['subject'],$frm_data['message']];
+
+      $res = insert($q, $values, 'ssss');
+      if($res==1)
+      {
+        alert('success', 'Mail sent!'); 
+      } else {
+        alert('error', 'Server Down! Try again later.');
+      }
+    }
+  ?>
+
 
   <?php require('inc/footer.php') ?>
 
