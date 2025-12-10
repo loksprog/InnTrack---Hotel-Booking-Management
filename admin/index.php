@@ -30,11 +30,10 @@
 </head>
 <body class="bg-light">
     
-    <?php showAlert(); ?>
     
     <div class="login-form text-center rounded bg-white shadow overflow-hidden">
         <form method="POST">
-            <h4 class="bg-dark text-white py-3">ADMIN LOGIN PANEL</h4>
+            <h4 class="bg-dark text-white py-3">Admin Login Panel</h4>
             <div class="p-4">
                 <div class="mb-3">
                     <input name="admin_name" required type="text" class="form-control shadow-none text-center" placeholder="Admin Name">
@@ -42,7 +41,7 @@
                 <div class="mb-4">
                     <input name="admin_pass" autocomplete="new-password" required type="password" class="form-control shadow-none text-center" placeholder="Password">
                 </div>
-                <button name="login" type="submit" class="btn text-white custom-bg shadow-none">LOGIN</button>
+                <button name="login" type="submit" class="btn text-white custom-bg shadow-none">Login</button>
             </div>
         </form>
     </div>
