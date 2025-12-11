@@ -28,12 +28,18 @@
         container.appendChild(element);
 
         // Auto remove after 4 seconds
-        setTimeout(function() {
-            element.querySelector('.alert').classList.remove('show');
-            setTimeout(function() {
-                element.remove();
-            }, 150);
-        }, 4000);
+        // setTimeout(function() {
+        //     element.querySelector('.alert').classList.remove('show');
+        //     setTimeout(function() {
+        //         element.remove();
+        //     }, 150);
+        // }, 4000);
+
+        setTimeout(remAlert,2000);
+    }
+
+    function remAlert(){
+        document.getElementsByClassName('alert')[0].remove();
     }
 
     function setActive() {
