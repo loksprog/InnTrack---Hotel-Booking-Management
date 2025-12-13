@@ -1,29 +1,34 @@
 <?php
 require('../admin/inc/db_config.php');
 require('../admin/inc/essentials.php');
-require("../inc/sendgrid/sendgrid-path.php");
+require("../inc/sendgrid/sendgrid-php.php");
 
-function sendMail()
+function send_mail($uemail,$name,$token)
 {
     $email = new \SendGrid\Mail\Mail();
-    $email->setFrom("test@example.com", "Example User");
-    $email->setSubject("Sending with SendGrid is Fun");
-    $email->addTo("test@example.com", "Example User");
-    $email->addContent("text/plain", "and easy to do anywhere, even with PHP");
+    $email->setFrom("lukeumpad9597@gmail.com", "InnTrack");
+    $email->setSubject("Account Verification Link");
+
+    $email->addTo($uemail,$name);
+
     $email->addContent(
         "text/html",
-        "<strong>and easy to do anywhere, even with PHP</strong>"
+        "
+        Click the link to confirm you email: <br>
+        <a href='".SITE_URL."email_confirm.php?email=$uemail&token=$token"."'>
+        CLICK ME
+        </a>
+        "
     );
-    $sendgrid = new \SendGrid(getenv('SENDGRID_API_KEY'));
-    // $sendgrid->setDataResidency("eu");
-    // uncomment the above line if you are sending mail using a regional EU subuser
-    try {
-        $response = $sendgrid->send($email);
-        print $response->statusCode() . "\n";
-        print_r($response->headers());
-        print $response->body() . "\n";
-    } catch (Exception $e) {
-        echo 'Caught exception: ' . $e->getMessage() . "\n";
+
+    $sendgrid = new \SendGrid(SENDGRID_API_KEY);
+    
+    try{
+        $sendgrid->send($email);
+        return 1;
+    }
+    catch (Exception $e){
+        return 0;
     }
 }
 
@@ -40,7 +45,7 @@ if (isset($_POST['register'])) {
 
     // check user exists or not
 
-    $u_exist = select("SELECT * FROM `user_cred` WHERE `email` = ? AND `phonenum` = ?", [$data['email'], $datap['phonenum']], "ss");
+    $u_exist = select("SELECT * FROM `user_cred` WHERE `email` = ? AND `phonenum` = ?", [$data['email'], $data['phonenum']], "ss");
 
     if (mysqli_num_rows($u_exist) != 0) {
         $u_exist_fetch = mysqli_fetch_assoc($u_exist);
@@ -61,4 +66,23 @@ if (isset($_POST['register'])) {
     }
 
     // send confirmation link to user's email
+
+
+    $token = bin2hex(random_bytes(16));
+    if (!send_mail($data['email'], $data['name'], $token)) {
+        echo "mail_failed";
+        exit;
+    }
+
+    $enc_pass = password_hash($data['pass'], PASSWORD_BCRYPT);
+
+    $query = "INSERT INTO `user_cred`(`name`, `email`, `address`, `phonenum`, `pincode`, `dob`, `profile`, `password`, `token`) VALUES (?,?,?,?,?,?,?,?,?)";
+
+    $value = [$data['name'], $data['email'], $data['address'], $data['phonenum'], $data['pincode'], $data['dob'], $img, $enc_pass, $token];
+
+    if (insert($query, $value, 'sssssssss')) {
+        echo 1;
+    } else {
+        echo 'ins_failed';
+    }
 }
