@@ -37,7 +37,7 @@
   <div class="container">
     <div class="row">
 
-      <?php
+    <?php
       $res = selectAll('facilities');
       $path = FACILITIES_IMG_PATH;
 
@@ -56,7 +56,7 @@
             </div>
           data;
       }
-      ?>
+    ?>
 
     </div>
   </div>
