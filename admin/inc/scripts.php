@@ -1,7 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
 <script>
-    function alert(type, msg) {
+    function alert(type, msg, position='body') {
         let bs_class = (type == 'success') ? 'alert-success' : 'alert-danger';
         let bg_color = (type == 'success') ? '#d1e7dd' : '#f8d7da';
         let text_color = (type == 'success') ? '#0f5132' : '#842029';
@@ -9,12 +9,21 @@
 
         let element = document.createElement('div');
         element.innerHTML = `
-            <div class="alert ${bs_class} alert-dismissible fade show custom-alert" role="alert" 
+            <div class="alert ${bs_class} alert-dismissible fade show " role="alert" 
                 style="background-color: ${bg_color}; color: ${text_color}; border: 1px solid ${border_color}; border-radius: 0.375rem; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); animation: slideInRight 0.3s ease-out;">
                 <strong class="me-2">${msg}</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         `;
+
+        if(position == 'body'){
+            document.body.append(element);
+            element.classList.add('custom-alert');
+        }
+        else{
+            document.getElementById(position).appendChild(element)
+        }
+
 
         // Get or create alert container
         let container = document.getElementById('alert-container');
